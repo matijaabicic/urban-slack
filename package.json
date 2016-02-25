@@ -1,0 +1,38 @@
+{
+  "name": "urban-slack",
+  "version": "0.0.1",
+  "description": "Urban Dictionary Slack bot",
+  "main": "server.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matijaabicic/urban-slack.git"
+  },
+  "keywords": [
+    "urban-slack",
+    "urban",
+    "dictionary",
+    "urban",
+    "dictionary",
+    "slack",
+    "bot"
+  ],
+  "author": "@matijaabicic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matijaabicic/urban-slack/issues"
+  },
+  "homepage": "https://github.com/matijaabicic/urban-slack",
+  "dependencies": {
+    "http": "0.0.0",
+    "express": "~4.13.4",
+    "request": "~2.69.0",
+    "universal-analytics": "~0.3.10"
+  }
+}
