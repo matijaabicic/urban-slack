@@ -5,7 +5,7 @@ var request = require('request');
 var settings = require('./settings');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
-var callback = require('./callback');
+//var callback = require('./callback');
 
 //let the server port be configurable. it really doesn't matter since this
 //is a listening port. Moubot v1 does not listen.
@@ -26,10 +26,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.post('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
-  res.send('Api request received...');
+  //res.send('Api request received...');
 
   //capture request details and prepare for Urban API request
-  var response_url = req.body.response_url;
+  global.response_url = req.body.response_url;
   var req_text = req.body.text;
   var urban_request = settings.urbanAPI + req_text;
 
@@ -38,7 +38,17 @@ app.post('/api', function(req, res){
     url: urban_request
   };
   //hit up urban dictionary API
-  request(options,callback.callback);
+  request(options, function callback (error, response, body){
+    if (!error && response.statusCode==200){
+
+      console.log(body);
+      res.send(body);
+
+    }
+    else {
+      console.error();
+    }
+  });
 });
 
 
