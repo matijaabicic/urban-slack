@@ -1,4 +1,9 @@
 module.exports.parse = function (bodyString){
+
+  //prepare the data to return to Slack
+  var returnData = {};
+  returnData.response_type  = "ephemeral";
+
     if(bodyString){
       //return bodyString.list[0].definition;
       var data = JSON.parse(bodyString);
@@ -8,15 +13,16 @@ module.exports.parse = function (bodyString){
         var definition = data.list[0].definition;
         var example = data.list[0].example;
 
-
-        var returnData = {};
-        returnData.numberOfDefinitions = numberOfDefinitions;
-        returnData.definition = definition;
-        returnData.example = example;
-
+        //returnData.numberOfDefinitions = numberOfDefinitions;
+        returnData.text = '*DEFINITION:* ' + definition;
+        returnData.attachments = [{"title":"Example use", "text": example}];
         return returnData;
       }
 
     }
-    else return "No result.";
+    //if there is no body, jsut return "no definition".
+    else returnData.text = 'No definition.';
+
+    //return slack response.
+    return returnData;
 };
