@@ -2,7 +2,7 @@ module.exports.parse = function (bodyString){
 
   //prepare the data to return to Slack
   var returnData = {};
-  returnData.response_type  = "ephemeral";
+  returnData.response_type  = "in_channel";
   returnData.username = "UrbanSlack";
 
     if(bodyString){
