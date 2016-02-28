@@ -5,6 +5,7 @@ var request = require('request');
 var settings = require('./settings');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
+var urbanParser = require('./urban-parser');
 //var callback = require('./callback');
 
 //let the server port be configurable. it really doesn't matter since this
@@ -40,9 +41,8 @@ app.post('/api', function(req, res){
   //hit up urban dictionary API
   request(options, function callback (error, response, body){
     if (!error && response.statusCode==200){
-
-      console.log(body);
-      res.send(body);
+      
+      res.send(urbanParser.parse(body));
 
     }
     else {
