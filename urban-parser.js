@@ -15,7 +15,7 @@ module.exports.parse = function (bodyString){
         var example = data.list[0].example;
 
         //returnData.numberOfDefinitions = numberOfDefinitions;
-        returnData.text = '*DEFINITION:* ' + definition;
+        returnData.text = '*DEFINITION (1 of ' + numberOfDefinitions +'):* ' + definition;
         returnData.attachments = [{"title":"Example use", "text": example}];
         return returnData;
       }
