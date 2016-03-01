@@ -7,6 +7,7 @@ var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
 var urbanParser = require('./urban-parser');
 var commandParser = require('./slack-command-parser');
+var helper = require('./helpPage');
 //var callback = require('./callback');
 
 //let the server port be configurable. it really doesn't matter since this
@@ -31,31 +32,40 @@ app.post('/api', function(req, res){
   //res.send('Api request received...');
 
   //capture request details and prepare for Urban API request
-  global.response_url = req.body.response_url;
+  var req_command = req.body.command;
   var req_text = req.body.text;
 
   //parse command and look for switches
   var parsedCommand = commandParser.parse(req_text);
 
-  //get ready to issue request to Urban API
-  var urban_request = settings.urbanAPI + parsedCommand.Command;
+  //if command is "?", just return the help page. no need to call urban API
+  //sanitize whitespaces and see if all we have left is ?
+  //should be able to post this publically and privately
+  if (parsedCommand.Command.replace(/ /g,'') == '?'){
+    res.send(helper.help(parsedCommand.responseType, req_command));
+  }
+  //otherwise, we have a real request.
+  else{
+    //get ready to issue request to Urban API
+    var urban_request = settings.urbanAPI + parsedCommand.Command;
 
-  //set urban api url;
-  var options = {
-    url: urban_request
-  };
-  //hit up urban dictionary API
-  request(options, function callback (error, response, body){
-    if (!error && response.statusCode==200){
+    //set urban api url;
+    var options = {
+      url: urban_request
+    };
+    //hit up urban dictionary API
+    request(options, function callback (error, response, body){
+      if (!error && response.statusCode==200){
 
-      //send the cleaned-up command and response type to parser
-      res.send(urbanParser.parse(body, parsedCommand.responseType));
+        //send the cleaned-up command and response type to parser
+        res.send(urbanParser.parse(body, parsedCommand.responseType));
 
-    }
-    else {
-      console.error();
-    }
-  });
+      }
+      else {
+        console.error();
+      }
+    });
+  }
 });
 
 
