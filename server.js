@@ -37,8 +37,7 @@ app.post('/api', function(req, res){
   //parse command and look for switches
   var parsedCommand = commandParser.parse(req_text);
 
-  console.log(parsedCommand);
-
+  //get ready to issue request to Urban API
   var urban_request = settings.urbanAPI + parsedCommand.Command;
 
   //set urban api url;
