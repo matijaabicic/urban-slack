@@ -22,10 +22,5 @@ module.exports.parse = function (commandText){
   //return the cleaned-up command
   result.Command = commandText.replace(/--public/g, '').replace(/--private/g, '');
 
-
-
-  console.log(commandText);
-  console.log(result.Command);
-
   return result;
 };
