@@ -6,6 +6,7 @@ var settings = require('./settings');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
 var urbanParser = require('./urban-parser');
+var commandParser = require('./slack-command-parser');
 //var callback = require('./callback');
 
 //let the server port be configurable. it really doesn't matter since this
@@ -32,7 +33,13 @@ app.post('/api', function(req, res){
   //capture request details and prepare for Urban API request
   global.response_url = req.body.response_url;
   var req_text = req.body.text;
-  var urban_request = settings.urbanAPI + req_text;
+
+  //parse command and look for switches
+  var parsedCommand = commandParser.parse(req_text);
+
+  console.log(parsedCommand);
+
+  var urban_request = settings.urbanAPI + parsedCommand.Command;
 
   //set urban api url;
   var options = {
@@ -41,8 +48,9 @@ app.post('/api', function(req, res){
   //hit up urban dictionary API
   request(options, function callback (error, response, body){
     if (!error && response.statusCode==200){
-      
-      res.send(urbanParser.parse(body));
+
+      //send the cleaned-up command and response type to parser
+      res.send(urbanParser.parse(body, parsedCommand.responseType));
 
     }
     else {

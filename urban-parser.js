@@ -1,8 +1,8 @@
-module.exports.parse = function (bodyString){
+module.exports.parse = function (bodyString, responseType){
 
   //prepare the data to return to Slack
   var returnData = {};
-  returnData.response_type  = "in_channel";
+  returnData.response_type  = responseType;
   returnData.username = "UrbanSlack";
 
     if(bodyString){
@@ -33,6 +33,7 @@ module.exports.parse = function (bodyString){
         {
           returnData.text = 'No definition.';
         }
+        break;
 
         default:
         {
