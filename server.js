@@ -10,8 +10,7 @@ var commandParser = require('./slack-command-parser');
 var helper = require('./helpPage');
 //var callback = require('./callback');
 
-//let the server port be configurable. it really doesn't matter since this
-//is a listening port. Moubot v1 does not listen.
+//let the server port be configurable.
 var PORT = settings.serverPort;
 
 //initialize Google Analytics
@@ -24,8 +23,11 @@ app.use(ua.middleware(settings.GA));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-//api call that returns the infomation about the next match. this needs to
-//be tidyed up.
+//placeholder home page
+app.get('/', function(req, res){
+  res.send("Coming soon...");
+});
+//api route
 app.post('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
