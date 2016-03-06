@@ -23,10 +23,7 @@ app.use(ua.middleware(settings.GA));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-//placeholder home page
-app.get('/', function(req, res){
-  res.send("Coming soon...");
-});
+
 //api route
 app.post('/api', function(req, res){
   //google pageview tracking
