@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var urbanParser = require('./urban-parser');
 var commandParser = require('./slack-command-parser');
 var helper = require('./helpPage');
+var worddb = require('./mongoose-data');
 //var callback = require('./callback');
 
 //let the server port be configurable.
@@ -47,6 +48,9 @@ app.post('/api', function(req, res){
   else{
     //get ready to issue request to Urban API
     var urban_request = settings.urbanAPI + parsedCommand.Command;
+
+    //register phrase in mongodb
+    worddb.savePhrase(parsedCommand.Command);
 
     //set urban api url;
     var options = {
