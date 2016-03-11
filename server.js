@@ -9,6 +9,7 @@ var urbanParser = require('./urban-parser');
 var commandParser = require('./slack-command-parser');
 var helper = require('./helpPage');
 var secrets = require('./secrets');
+
 //var callback = require('./callback');
 
 //let the server port be configurable.
@@ -23,20 +24,17 @@ app.use(express.static(__dirname + '/web'));
 app.use(ua.middleware(settings.GA));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.set('view engine', 'ejs');
+app.set('views', __dirname+'/web/views');
 
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
 
-  console.log(req.query);
-  console.log(res);
-
   if (req.query.error)
   {
     visitor.pageview("/AddSlack/Error").send();
-    res.setHeader("errorType", "Authorization_Failed");
-    res.sendFile('add-fail.html', {"root": __dirname + '/web' });
+    res.render('add-fail', { errorMessage: "Authorization Failed"});
   }
   else {
     visitor.pageview("/AddSlack/Success").send();
@@ -55,14 +53,12 @@ app.get('/AddSlack', function(req, res){
     //hit up urban dictionary API
     request(options, function callback (error, response, body){
 
-      console.log("Slack auth executed");
-      console.log("=======ERROR: " + error);
-      console.log("=======RESPONSE: " + response.statusCode);
-      console.log("=======BODY: " + body);
+      var bodyJson = JSON.parse(body);
 
       if (!(body.ok)){
         visitor.pageview("/AddSlack/Error").send();
-        res.sendFile('add-fail.html?errorType=' + body.error , {"root": __dirname + '/web' });
+
+        res.render('add-fail', {errorMessage : bodyJson.error});
       }
       else {
         res.sendFile('add-success.html', {"root": __dirname + '/web' });
