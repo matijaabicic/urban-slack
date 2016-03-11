@@ -27,8 +27,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
+
   console.log(req.query);
-  res.send("Great success!");
+  console.log(res);
+
+  if (req.query.error)
+  {
+    visitor.pageview("/AddSlack/Error").send();
+    res.sendFile('add-fail.html', {"root": __dirname + '/web' });
+  }
+  else {
+    visitor.pageview("/AddSlack/Success").send();
+    res.sendFile('add-success.html', {"root": __dirname + '/web' });
+  }
 });
 
 //api route
