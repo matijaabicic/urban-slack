@@ -10,6 +10,7 @@ module.exports = {
   //slack response modes:
   // ephemeral - only visible to user who isseus the slash command
   // in_channel - visible to everyone in the chat window (direct, group, channel)
-  defaultSlackResponseMode : 'ephemeral'
+  defaultSlackResponseMode : 'ephemeral',
+  slackOAuthURI: 'https://slack.com/api/oauth.access'
 
 };

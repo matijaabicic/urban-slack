@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var urbanParser = require('./urban-parser');
 var commandParser = require('./slack-command-parser');
 var helper = require('./helpPage');
+var secrets = require('./secrets');
 //var callback = require('./callback');
 
 //let the server port be configurable.
@@ -34,11 +35,40 @@ app.get('/AddSlack', function(req, res){
   if (req.query.error)
   {
     visitor.pageview("/AddSlack/Error").send();
+    res.setHeader("errorType", "Authorization_Failed");
     res.sendFile('add-fail.html', {"root": __dirname + '/web' });
   }
   else {
     visitor.pageview("/AddSlack/Success").send();
-    res.sendFile('add-success.html', {"root": __dirname + '/web' });
+    //return code will be needed for registering with the team
+    var code = req.query.code;
+    //get ready to issue request to Urban API
+    var slack_authorization = settings.slackOAuthURI +
+      '?client_id=' + secrets.secret_slack_client_ID +
+      '&client_secret=' + secrets.secret_slack_client_secret +
+      '&code=' + code;
+
+    //set urban api url;
+    var options = {
+      url: slack_authorization
+    };
+    //hit up urban dictionary API
+    request(options, function callback (error, response, body){
+
+      console.log("Slack auth executed");
+      console.log("=======ERROR: " + error);
+      console.log("=======RESPONSE: " + response.statusCode);
+      console.log("=======BODY: " + body);
+
+      if (!(body.ok)){
+        visitor.pageview("/AddSlack/Error").send();
+        res.sendFile('add-fail.html?errorType=' + body.error , {"root": __dirname + '/web' });
+      }
+      else {
+        res.sendFile('add-success.html', {"root": __dirname + '/web' });
+      }
+    });
+
   }
 });
 
