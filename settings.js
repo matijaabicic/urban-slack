@@ -11,6 +11,8 @@ module.exports = {
   // ephemeral - only visible to user who isseus the slash command
   // in_channel - visible to everyone in the chat window (direct, group, channel)
   defaultSlackResponseMode : 'ephemeral',
-  slackOAuthURI: 'https://slack.com/api/oauth.access'
+  slackOAuthURI: 'https://slack.com/api/oauth.access',
+  slackRedirectURI_local: 'http://localhost:8080/AddSlack',
+  slackRedirectURI_heroku: 'https://urban-slack.herokuapp.com/AddSlack'
 
 };

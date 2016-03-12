@@ -44,7 +44,8 @@ app.get('/AddSlack', function(req, res){
     var slack_authorization = settings.slackOAuthURI +
       '?client_id=' + secrets.secret_slack_client_ID +
       '&client_secret=' + secrets.secret_slack_client_secret +
-      '&code=' + code;
+      '&code=' + code +
+      '&redirect_uri=' + settings.slackRedirectURI_local;
 
     //set urban api url;
     var options = {
@@ -55,7 +56,7 @@ app.get('/AddSlack', function(req, res){
 
       var bodyJson = JSON.parse(body);
 
-      if (!(body.ok)){
+      if (!(bodyJson.ok)){
         visitor.pageview("/AddSlack/Error").send();
 
         res.render('add-fail', {errorMessage : bodyJson.error});
