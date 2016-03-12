@@ -41,11 +41,17 @@ app.get('/AddSlack', function(req, res){
     //return code will be needed for registering with the team
     var code = req.query.code;
     //get ready to issue request to Urban API
+
+    //look for secrets first in proc file, then in secrets js.
+
+    var slack_client_ID = (process.env.secret_slack_client_ID ? process.env.secret_slack_client_ID : secrets.secret_slack_client_ID);
+    var slack_client_secret = (process.env.secret_slack_client_secret ? process.env.secret_slack_client_secret : secrets.secret_slack_client_secret);
+
     var slack_authorization = settings.slackOAuthURI +
-      '?client_id=' + secrets.secret_slack_client_ID +
-      '&client_secret=' + secrets.secret_slack_client_secret +
+      '?client_id=' + slack_client_ID +
+      '&client_secret=' + slack_client_secret +
       '&code=' + code +
-      '&redirect_uri=' + settings.slackRedirectURI_local;
+      '&redirect_uri=' + settings.slackRedirectURI_heroku;
 
     //set urban api url;
     var options = {
