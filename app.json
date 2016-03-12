@@ -1,0 +1,11 @@
+{
+  "name": "Urban Slack",
+  "description": "Urban Dictionary Slack Bot",
+  "repository": "https://github.com/matijaabicic/urban-slack",
+  "logo": "https://urban-slack.herokuapps.com/assets/img/UrbanSlackLogo.png",
+  "keywords": ["Urban", "Dictionary", "Slack", "Bot", "Node", "NodeJS"],
+  "env": {
+        "secret_slack_client_ID": "-- your own Slack Client ID --",
+        "secret_slack_client_secret": "-- your own Slack Client Secret --"
+    }
+}
