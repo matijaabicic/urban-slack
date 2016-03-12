@@ -35,3 +35,4 @@ node_modules
 # Secret files
 secrets.js
 app.json
+.env
