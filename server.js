@@ -5,9 +5,9 @@ var request = require('request');
 var settings = require('./settings');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
-var urbanParser = require('./urban-parser');
-var commandParser = require('./slack-command-parser');
-var helper = require('./helpPage');
+var urbanParser = require('./lib/urban-parser');
+var commandParser = require('./lib/slack-command-parser');
+var helper = require('./lib/helpPage');
 var secrets = require('./secrets');
 
 //var callback = require('./callback');

@@ -1,6 +1,6 @@
 
 var assert = require("assert");
-var parser = require("../urban-parser.js");
+var parser = require("../lib/urban-parser.js");
 var fs = require("fs");
 
 var obj = JSON.parse(fs.readFileSync('mocha_testing/sampledata.js', 'utf8'));
