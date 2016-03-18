@@ -1,6 +1,6 @@
 {
   "name": "urban-slack",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Urban Dictionary Slack bot",
   "main": "server.js",
   "directories": {
