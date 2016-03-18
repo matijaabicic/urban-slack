@@ -1,7 +1,7 @@
 # urban-slack
 #### Urban Dictionary Slack Bot
 
-Check it out at [Urban Slack Webpage](https://urban-slack.herokuapps.com)
+Check it out at [Urban Slack Webpage](https://urban-slack.herokuapp.com)
 
 
 Is your team on a free plan and you're all out of integrations? No problem. You can use Urban Slack as a Service by pointing your manual Slack slash commands at:
