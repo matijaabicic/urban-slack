@@ -13,4 +13,4 @@ Usage tip: `/urban ?` will give you a list of available commands.
 
 .urban-slack responds to your slack channel under UrbanSlack username.
 
-Check *Issues* page for bugs and feature requests.
+Check **[Issues](https://github.com/matijaabicic/urban-slack/issues)** page for bugs and feature requests.
