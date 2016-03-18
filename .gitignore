@@ -33,6 +33,6 @@ node_modules
 .node_repl_history
 
 # Secret files
-secrets.js
+# secrets.js
 app.json
 .env

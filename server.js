@@ -9,6 +9,7 @@ var urbanParser = require('./lib/urban-parser');
 var commandParser = require('./lib/slack-command-parser');
 var helper = require('./lib/helpPage');
 var secrets = require('./secrets');
+var mlab = require('mongolab-data-api')(secrets.mLabApiKey);
 
 //var callback = require('./callback');
 
