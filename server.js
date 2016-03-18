@@ -12,7 +12,7 @@ var secrets = require('./secrets');
 
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
 
-var mlab = require('mongolab-data-api')(secrets.mLabApiKey);
+var mlab = require('mongolab-data-api')(mLabKey);
 
 //let the server port be configurable.
 var PORT = settings.serverPort;
