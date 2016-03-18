@@ -9,9 +9,10 @@ var urbanParser = require('./lib/urban-parser');
 var commandParser = require('./lib/slack-command-parser');
 var helper = require('./lib/helpPage');
 var secrets = require('./secrets');
-var mlab = require('mongolab-data-api')(secrets.mLabApiKey);
 
-//var callback = require('./callback');
+var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
+
+var mlab = require('mongolab-data-api')(secrets.mLabApiKey);
 
 //let the server port be configurable.
 var PORT = settings.serverPort;
@@ -80,14 +81,21 @@ app.get('/AddSlack', function(req, res){
 app.post('/api', function(req, res){
   //google pageview tracking
   visitor.pageview("/api").send();
-  //res.send('Api request received...');
 
   //capture request details and prepare for Urban API request
-  var req_command = req.body.command;
-  var req_text = req.body.text;
+  var req_command       = req.body.command;
+  var req_text          = req.body.text;
+  var req_team_id       = req.body.team_id;
+  var req_team_domain   = req.body.team_domain;
+  var req_channel_id    = req.body.channel_id;
+  var req_channel_name  = req.body.channel_name;
+  var req_user_id       = req.body.user_id;
+  var req_user_name     = req.body.user_name;
 
   //parse command and look for switches
   var parsedCommand = commandParser.parse(req_text);
+
+
 
   //if command is "?", just return the help page. no need to call urban API
   //sanitize whitespaces and see if all we have left is ?
@@ -115,6 +123,40 @@ app.post('/api', function(req, res){
       else {
         console.error();
       }
+
+      //record current datetime
+      var currentDate = new Date();
+      //record the result we got from UD API
+      var resultType = JSON.parse(body).result_type;
+
+      //record requests in monogdb instance
+      var mlabOptions = {
+        "database"        : settings.mongoDBName,
+        "collectionName"  : "phrases",
+        "documents"       : {
+            "responseType"  : parsedCommand.responseType,
+            "queryText"     : parsedCommand.Command,
+            "datetime"      : currentDate,
+            "team_id"       : req_team_id,
+            "team_domain"   : req_team_domain,
+            "cahnnel_id"    : req_channel_id,
+            "channel_name"  : req_channel_name,
+            "user_id"       : req_user_id,
+            "user_name"     : req_user_name,
+            "result_type"   : resultType
+            }
+      };
+
+      mlab.insertDocuments(mlabOptions, function(err, data){
+        if(err){
+          console.log(err);
+        }
+        else {
+          //debug only
+          console.log("Mongo insert ok.");
+        }
+      });
+
     });
   }
 });

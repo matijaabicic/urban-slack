@@ -36,3 +36,4 @@ node_modules
 secrets.js
 app.json
 .env
+.node-xmlhttprequest*
