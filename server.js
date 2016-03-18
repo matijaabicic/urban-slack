@@ -153,7 +153,7 @@ app.post('/api', function(req, res){
         }
         else {
           //debug only
-          console.log("Mongo insert ok.");
+          //console.log("Mongo insert ok.");
         }
       });
 
