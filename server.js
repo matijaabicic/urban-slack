@@ -96,12 +96,44 @@ app.post('/api', function(req, res){
   var parsedCommand = commandParser.parse(req_text);
 
 
+  //record current datetime
+  var currentDate = new Date();
+
+  //record requests in mLab
+  var mlabOptions = {
+    "database"        : settings.mongoDBName,
+    "collectionName"  : "phrases",
+    "documents"       : {
+        "responseType"  : parsedCommand.responseType,
+        "queryText"     : parsedCommand.Command,
+        "datetime"      : currentDate,
+        "team_id"       : req_team_id,
+        "team_domain"   : req_team_domain,
+        "cahnnel_id"    : req_channel_id,
+        "channel_name"  : req_channel_name,
+        "user_id"       : req_user_id,
+        "user_name"     : req_user_name
+        }
+  };
+
 
   //if command is "?", just return the help page. no need to call urban API
   //sanitize whitespaces and see if all we have left is ?
   //should be able to post this publically and privately
   if (parsedCommand.Command.replace(/ /g,'') == '?'){
     res.send(helper.help(parsedCommand.responseType, req_command));
+    mlabOptions.documents.result_type = "help";
+
+    //now insert help data to mLab
+    mlab.insertDocuments(mlabOptions, function(err, data){
+      if(err){
+        console.log(err);
+      }
+      else {
+        //debug only
+        //console.log("Mongo insert ok.");
+      }
+    });
   }
   //otherwise, we have a real request.
   else{
@@ -124,29 +156,10 @@ app.post('/api', function(req, res){
         console.error();
       }
 
-      //record current datetime
-      var currentDate = new Date();
       //record the result we got from UD API
-      var resultType = JSON.parse(body).result_type;
+      mlabOptions.documents.result_type = JSON.parse(body).result_type;
 
-      //record requests in monogdb instance
-      var mlabOptions = {
-        "database"        : settings.mongoDBName,
-        "collectionName"  : "phrases",
-        "documents"       : {
-            "responseType"  : parsedCommand.responseType,
-            "queryText"     : parsedCommand.Command,
-            "datetime"      : currentDate,
-            "team_id"       : req_team_id,
-            "team_domain"   : req_team_domain,
-            "cahnnel_id"    : req_channel_id,
-            "channel_name"  : req_channel_name,
-            "user_id"       : req_user_id,
-            "user_name"     : req_user_name,
-            "result_type"   : resultType
-            }
-      };
-
+      //now insert response data to mLab
       mlab.insertDocuments(mlabOptions, function(err, data){
         if(err){
           console.log(err);
@@ -156,7 +169,6 @@ app.post('/api', function(req, res){
           //console.log("Mongo insert ok.");
         }
       });
-
     });
   }
 });
