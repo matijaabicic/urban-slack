@@ -1,6 +1,6 @@
 {
   "name": "urban-slack",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Urban Dictionary Slack bot",
   "main": "server.js",
   "directories": {
@@ -37,6 +37,7 @@
     "body-parser": "~1.15.0",
     "fs": "~0.0.2",
     "ejs": "~2.4.1",
-    "mongolab-data-api": "~1.1.4"
+    "mongolab-data-api": "~1.1.4",
+    "swearjar": "~0.1.2"
   }
 }

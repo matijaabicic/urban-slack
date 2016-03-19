@@ -106,6 +106,7 @@ app.post('/api', function(req, res){
     "documents"       : {
         "responseType"  : parsedCommand.responseType,
         "queryText"     : parsedCommand.Command,
+        "filter"        : parsedCommand.rating,
         "datetime"      : currentDate,
         "team_id"       : req_team_id,
         "team_domain"   : req_team_domain,
@@ -149,7 +150,7 @@ app.post('/api', function(req, res){
       if (!error && response.statusCode==200){
 
         //send the cleaned-up command and response type to parser
-        res.send(urbanParser.parse(body, parsedCommand.responseType));
+        res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
 
       }
       else {
