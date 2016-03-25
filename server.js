@@ -29,6 +29,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/web/views');
 
+//standard web homepage route
+app.get('/', function(req, res){
+  res.render('index');
+});
+
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
@@ -70,7 +75,7 @@ app.get('/AddSlack', function(req, res){
         res.render('add-fail', {errorMessage : bodyJson.error});
       }
       else {
-        res.sendFile('add-success.html', {"root": __dirname + '/web' });
+        res.render('add-success');
       }
     });
 
