@@ -31,7 +31,6 @@
     <![endif]-->
 
     <script src="assets/js/modernizr.js"></script>
-    <script src="assets/js/qsParser.js"></script>
   </head>
 
   <body>
@@ -50,16 +49,8 @@
 	    <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
-          <h1>URBAN</h1>
-					<h5>Urban Dictionary Slack Bot</h5>
-          <br/>
-          <h3>CANNOT ADD TO SLACK.<h3>
-          <h3>Error:  <%= errorMessage %></h3>
-          <h5>Please try again or direct your custom /slash slack command to https://urban-slack.herokuapp.com/api </h5>
-          <br/>
-          <a href="https://slack.com/oauth/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-          <br/>
-          <br/>
+          <h1>PRIVACY POLICY</h1>
+          <h5>Urban stores the minimum required amount of data needed to improve the service delivered to the users. The code is completely open and you can view all the details at <a href="https://www.github.com/matijaabicic/urban-slack" target="_blank">Github</a>.</h5>
 				</div>
 			</div><!-- /row -->
 	    </div> <!-- /container -->
@@ -68,37 +59,41 @@
 	<!-- *****************************************************************************************************************
 	 SERVICE LOGOS
 	 ***************************************************************************************************************** -->
-	 <div id="service">
+   <div id="service">
 	 	<div class="container">
  			<div class="row centered">
- 				<div class="col-md-4">
- 					<i class="fa fa-flask"></i>
- 					<h4>Urban</h4>
- 					<p>Urban is your Urban Dictionary Slack bot. Use /urban command to decipher all the pop-culture references your team colleagues throw around Slack channels ever so freely, assuming that everyone understands them.</p>
- 					<p><br/><a href="#" class="btn btn-theme">More Info Coming Soon...</a></p>
- 				</div>
- 				<div class="col-md-4">
- 					<i class="fa fa-slack"></i>
- 					<h4>Add to Slack</h4>
- 					<p>Urban is super-easy to add to your slack team. Hit the add-to-slack button, authorize your team to use Urban and you can start using /urban command within seconds inside your Slack team.</p>
- 					<p><br/><a href="https://slack.com/oauth/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a></p>
- 				</div>
- 				<div class="col-md-4">
- 					<i class="fa fa-github"></i>
- 					<h4>Bugs and feature requests</h4>
- 					<p>Urban Slack is an open-source project under MIT license. Report bugs, submit feature request and contribute to the project at GitHub. All ideas suggestions and pull requests are more than welcome :)</p>
- 					<p><br/><a href="https://www.github.com/matijaabicic/urban-slack/issues" target="_blank" class="btn btn-theme">View on GitHub</a></p>
- 				</div>
-	 		</div>
+        <div class="col-md-8 col-md-offset-2">
+          <dl class="dl-horizontal left">
+            <dt>Stored Data</dt>
+            <dd>For purposes of better understanding our users, we store certain details from /urban requests. We keep track of --sfw vs --nsfw requests, --public and --private, as well as ? (help) requests to understand ways in which Urban is best used. We also keep track the usage distribution across teams and users to understand whether Urban is used by lots of teams and small number of people, few teams and a lot of people, lots of teams and everyone in them or....no one at all. We only keep the annonymized,  numeric IDs, we <strong>DO NOT</strong> store any team, channel or user names.</dd>
+            </br>
+            <dt>Analytics</dt>
+            <dd>Urban uses Google Analytics for better understanding of our users. We pass two types of data to our Google Analtyics tracker: website visits (to understand who is visiting us and who is refering us) and API access from slack. Regarding the API, we only collect the "api triggered" event in Google Analytics, to help us understand the frequency and usage. When /urban command is triggered from slack, all we see is a hit at our API endpoint and that the request is coming from Slack servers, our Google Analytics tracker does not know who you are and where you are coming from, what you are searching etc. See <a href="https://www.google.com/analytics/terms/us.html" target="_blank">Google Analytics Terms</a> for all details.</dd>
+            </br>
+            <dt>3rd Party Services</dt>
+            <dd>Urban runs on the Heroku Platform. See <a href="https://www.heroku.com/policy/privacy" target="_blank">Heroku Privacy Policy</a>  for more details.</dd>
+            <dd>Urban also uses mLab Mongo-as-a-Service. See <a href="https://mlab.com/company/legal/privacy/" target="_blank">mLab Privacy Policy</a> for more details.</dd>
+            <br/>
+            <dt>Advertising</dt>
+            <dd>Urban <strong>does not</strong> display advertisments. Not on the web page, not in Slack responses. We also do not share the data with any advertisers, intermediaries...how should we put it to close all the loopholes: we don't sahre the data with <strong>anyone</strong>. </dd>
+            </br>
+            <dt>Data transfer</dt>
+            <dd>We <strong>NEVER</strong> share or sell any stored data. To anyone. Ever.</dd>
+            </br>
+            <dt>Privacy policy</dt>
+            <dd>This privacy policy may change over time.</dd>
+          </dl>
+        </div>
+      </div> <!-- /row -->
 	 	</div><! --/container -->
 	 </div><! --/service -->
 
-   <!-- *****************************************************************************************************************
- 	 FOOTER -->
+	<!-- *****************************************************************************************************************
+	 FOOTER -->
 
-    <% include ./partial/footer %>
+   <% include ./partial/footer %>
 
- <!-- ***************************************************************************************************************** -->
+<!-- ***************************************************************************************************************** -->
 
 
     <!-- Bootstrap core JavaScript

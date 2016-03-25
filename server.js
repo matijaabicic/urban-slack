@@ -34,6 +34,11 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
+//privacy route
+app.get('/privacy', function(req, res){
+  res.render('privacy');
+});
+
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
@@ -114,11 +119,8 @@ app.post('/api', function(req, res){
         "filter"        : parsedCommand.rating,
         "datetime"      : currentDate,
         "team_id"       : req_team_id,
-        "team_domain"   : req_team_domain,
         "cahnnel_id"    : req_channel_id,
-        "channel_name"  : req_channel_name,
-        "user_id"       : req_user_id,
-        "user_name"     : req_user_name
+        "user_id"       : req_user_id
         }
   };
 
