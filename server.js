@@ -39,6 +39,11 @@ app.get('/privacy', function(req, res){
   res.render('privacy');
 });
 
+//howto route
+app.get('/howto', function(req,res){
+  res.render('howto');
+});
+
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
