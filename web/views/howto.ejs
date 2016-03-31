@@ -65,25 +65,31 @@
         <div class="col-md-8 col-md-offset-2">
           <dl class="dl-horizontal left">
             <dt>Ask for Help</dt>
-            <dd>Type <code>/urban ?</code></dd>
-            <dd></dd>
-            </br>
-            <dt>Make it public</dt>
-            <dt><code>/urban --public ?</code></dt>
-            <dd></dd>
-            </br>
-            <dt>3rd Party Services</dt>
-            <dd>Urban runs on the Heroku Platform. See <a href="https://www.heroku.com/policy/privacy" target="_blank">Heroku Privacy Policy</a>  for more details.</dd>
-            <dd>Urban also uses mLab Mongo-as-a-Service. See <a href="https://mlab.com/company/legal/privacy/" target="_blank">mLab Privacy Policy</a> for more details.</dd>
+            <dd><code>/urban ?</code></dd>
+            <dd>Urban will give you a quick glance at all available commands</dd>
             <br/>
-            <dt>Advertising</dt>
-            <dd>Urban <strong>does not</strong> display advertisments. Not on the web page, not in Slack responses. We also do not share the data with any advertisers, intermediaries...how should we put it to close all the loopholes: we don't sahre the data with <strong>anyone</strong>. </dd>
-            </br>
-            <dt>Data transfer</dt>
-            <dd>We <strong>NEVER</strong> share or sell any stored data. To anyone. Ever.</dd>
-            </br>
-            <dt>Privacy policy</dt>
-            <dd>This privacy policy may change over time.</dd>
+            <dt>Make it public</dt>
+            <dd><code>/urban --public ?</code></dd>
+            <dd>Urban will post both your "?" request and the response publically into your current channel. </dd>
+            <br/>
+            <dt>Phrases</dt>
+            <dd><code>/urban FOMO</code>  or  <code>/urban what's up</code> ...</dd>
+            <dd>You will see an Urban Dictionary definition for your search term.</dd>
+            <br/>
+            <dt>Sketchy Phrases</dt>
+            <dd><code>/urban --sfw kevin</code></dd>
+            <dd>This will tell you that kevin has a huge ****. You can always try <code>/urban kevin</code> without the <strong>--sfw</strong> part, but that's at your own discretion..and peril.</dd>
+            <br/>
+            <dt>Combinations</dt>
+            <dd><code>/urban --sfw --public kevin</code> or <code>/urban --public --sfw kevin</code> or <code>/urban kevin --sfw --public</code> or <code>/urban --sfw kevin --public</code> or...well, you get the point.</dd>
+            <dd>All these above examples will take the naughty code returned by Urban Dictionary, censosor it and then output it into a public channel, private conversation or a group.</dd>
+            <br/>
+            <dt>Defaults</dt>
+            <dd><code>/urban --nsfw --private kevin</code></dd>
+            <dd>This is the default response type; meaning - only you can see the response and that response will be non-filtered. <code>/urban kevin</code> is the equivalent to above.</dd>
+            <br/>
+            <dt>Future</dt>
+            <dd>Next up - user and team defaults. You will be able to set a default response type (--public, --sfw etc.) and you won't have to include switches with every single query. Coming soon ;)<dd>
           </dl>
         </div>
       </div> <!-- /row -->
