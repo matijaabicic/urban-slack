@@ -122,6 +122,7 @@ app.post('/api', function(req, res){
         "responseType"  : parsedCommand.responseType,
         "queryText"     : parsedCommand.Command,
         "filter"        : parsedCommand.rating,
+        "random"        : parsedCommand.random,
         "datetime"      : currentDate,
         "team_id"       : req_team_id,
         "cahnnel_id"    : req_channel_id,
@@ -162,7 +163,9 @@ app.post('/api', function(req, res){
       if (!error && response.statusCode==200){
 
         //send the cleaned-up command and response type to parser
-        res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
+        //res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
+        // changed in v0.4.1 to pass back the  entire parsedCommand
+        res.send(urbanParser.parse(body, parsedCommand));
 
       }
       else {

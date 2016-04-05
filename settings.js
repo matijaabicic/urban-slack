@@ -17,7 +17,10 @@ module.exports = {
   slackRedirectURI_heroku   : 'https://urban-slack.herokuapp.com/AddSlack',
   mongoDBName               : 'urbanslack',
 
-  //by default, do not filter out profanity. 
-  defaultRating             : 'nsfw'
+  //by default, do not filter out profanity.
+  defaultRating             : 'nsfw',
+
+  //by default, do not randomize responses
+  defaultRandomSetting      : false
 
 };
