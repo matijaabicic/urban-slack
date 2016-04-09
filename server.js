@@ -44,6 +44,32 @@ app.get('/howto', function(req,res){
   res.render('howto');
 });
 
+//cretids route
+app.get('/contributors', function(req,res){
+  //request data from github.
+  var gh_request_options = {
+    uri:   'https://api.github.com/repos/matijaabicic/urban-slack/contributors',
+    method: 'GET',
+    headers: {'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'}
+  };
+
+  request(gh_request_options, function callback (error, response, body){
+    if(!error && response.statusCode==200)
+    {
+        
+        //pass data to contributors page.
+        res.render('contributors', {contributors: JSON.parse(body)});
+    }
+    else{
+      console.log("Failed request to github.");
+      console.log(error);
+      //glitch with github. No data to pass, catch this scenario in contributors.ejs
+      res.render('contributors', {contributors: []});
+    }
+  });
+
+});
+
 //add to slack success route
 app.get('/AddSlack', function(req, res){
   visitor.pageview("/AddSlack").send();
