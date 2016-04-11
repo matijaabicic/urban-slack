@@ -37,3 +37,6 @@ secrets.js
 app.json
 .env
 .node-xmlhttprequest*
+
+# OS X stuff
+*DS_Store
