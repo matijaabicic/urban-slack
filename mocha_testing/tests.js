@@ -11,7 +11,7 @@ describe("Internal testing", function() {
       var api_result = JSON.stringify(obj.urbanparser.apiresponse);
 
       var expected_output = JSON.stringify(obj.urbanparser.correctoutput);
-      var parse_result = JSON.stringify(parser.parse(api_result, 'ephemeral'));
+      var parse_result = JSON.stringify(parser.parse(api_result, JSON.parse('{"responseType":"ephemeral","rating":"nsfw","random":false}')));
 
       assert.equal(parse_result, expected_output);
     });
