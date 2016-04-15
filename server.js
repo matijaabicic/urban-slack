@@ -9,6 +9,7 @@ var urbanParser = require('./lib/urban-parser');
 var commandParser = require('./lib/slack-command-parser');
 var helper = require('./lib/helpPage');
 var secrets = require('./secrets');
+var mLabHelper = require('./lib/mLabHelper');
 
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
 
@@ -28,10 +29,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/web/views');
+var lastPhrase = null;
 
 //standard web homepage route
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index', {latestQuery: lastPhrase});
 });
 
 //privacy route
@@ -56,7 +58,7 @@ app.get('/contributors', function(req,res){
   request(gh_request_options, function callback (error, response, body){
     if(!error && response.statusCode==200)
     {
-        
+
         //pass data to contributors page.
         res.render('contributors', {contributors: JSON.parse(body)});
     }
@@ -198,8 +200,16 @@ app.post('/api', function(req, res){
         console.error();
       }
 
+      //save the type of response from UD API
+      var result_type = JSON.parse(body).result_type;
+
+      //update lastPhrase if we've got an exact response
+      if(result_type=="exact"){
+        lastPhrase = mlabOptions.documents.queryText;
+      }
+
       //record the result we got from UD API
-      mlabOptions.documents.result_type = JSON.parse(body).result_type;
+      mlabOptions.documents.result_type = result_type;
 
       //now insert response data to mLab
       mlab.insertDocuments(mlabOptions, function(err, data){
@@ -219,4 +229,10 @@ app.post('/api', function(req, res){
 //start the server and listen on the designated port
 var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
+
+  lastPhrase = mLabHelper.GetLastQuery();
+  //used on server startup - query the storage and pull out last queried phrase
+  while(lastPhrase === null || lastPhrase=== undefined ){
+    lastPhrase = mLabHelper.GetLastQuery();
+  }
 });
