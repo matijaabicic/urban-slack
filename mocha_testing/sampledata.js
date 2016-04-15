@@ -45,5 +45,17 @@
         "text": "asdasdasdasdsdasdasdadasdsd"
       }]
     }
+  },
+  "commandparser": {
+    "helpRequest"               : "/urban ?",
+    "helpRequest_result"        : {"responseType":"ephemeral","rating":"nsfw","random":false,"Command":"\"/urban ?\""},
+    "publicHelpRequest"         : "/urban ? --public",
+    "publicHelpRequest_result"  : {"responseType":"in_channel","rating":"nsfw","random":false,"Command":"\"/urban ? \""},
+    "sfwRequest"                : "/urban kevin --sfw",
+    "sfwRequest_result"         : {"responseType":"ephemeral","rating":"sfw","random":false,"Command":"\"/urban kevin \""},
+    "randomRequest"             : "/urban kevin --random",
+    "randomRequest_result"      : {"responseType":"ephemeral","rating":"nsfw","random":true,"Command":"\"/urban kevin \""},
+    "comboRequest"              : "/urban hello --random --public --sfw",
+    "comboRequest_result"       : {"responseType":"in_channel","rating":"sfw","random":true,"Command":"\"/urban hello   \""}
   }
 }
