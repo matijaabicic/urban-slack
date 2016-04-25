@@ -183,7 +183,7 @@ app.post('/api', function(req, res){
     //if requesting last, we need to fetch it from the DB first
     //this can be moved to in-memory later
     //get ready to issue request to Urban API
-    var urban_request = settings.urbanAPI + (parsedCommand.last ? mLabHelper.GetLastQueryForUser(req_team_id, req_user_id) : parsedCommand.Command);
+    var urban_request = settings.urbanAPI + mlabOptions.documents.queryText; // (parsedCommand.last ? mLabHelper.GetLastQueryForUser(req_team_id, req_user_id) : parsedCommand.Command);
 
     //set urban api url;
     var options = {
