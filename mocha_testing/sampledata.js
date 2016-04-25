@@ -56,6 +56,8 @@
     "randomRequest"             : "/urban kevin --random",
     "randomRequest_result"      : {"responseType":"ephemeral","rating":"nsfw","random":true,"Command":"\"/urban kevin \""},
     "comboRequest"              : "/urban hello --random --public --sfw",
-    "comboRequest_result"       : {"responseType":"in_channel","rating":"sfw","random":true,"Command":"\"/urban hello   \""}
+    "comboRequest_result"       : {"responseType":"in_channel","rating":"sfw","random":true,"Command":"\"/urban hello   \""},
+    "lastRequest"              : "/urban --last",
+    "lastRequest_result"       : {"responseType":"ephemeral","rating":"nsfw","random":false,"last":true,"Command":""}
   }
 }

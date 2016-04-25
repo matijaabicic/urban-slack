@@ -148,13 +148,14 @@ app.post('/api', function(req, res){
     "collectionName"  : "phrases",
     "documents"       : {
         "responseType"  : parsedCommand.responseType,
-        "queryText"     : parsedCommand.Command,
+        "queryText"     : (parsedCommand.last ? mLabHelper.GetLastQueryForUser(req_team_id, req_user_id) : parsedCommand.Command),
         "filter"        : parsedCommand.rating,
         "random"        : parsedCommand.random,
+        "last"          : parsedCommand.last,
         "datetime"      : currentDate,
         "team_id"       : req_team_id,
         "cahnnel_id"    : req_channel_id,
-        "user_id"       : req_user_id
+        "user_id"       : req_user_id,
         }
   };
 
@@ -179,8 +180,10 @@ app.post('/api', function(req, res){
   }
   //otherwise, we have a real request.
   else{
+    //if requesting last, we need to fetch it from the DB first
+    //this can be moved to in-memory later
     //get ready to issue request to Urban API
-    var urban_request = settings.urbanAPI + parsedCommand.Command;
+    var urban_request = settings.urbanAPI + (parsedCommand.last ? mLabHelper.GetLastQueryForUser(req_team_id, req_user_id) : parsedCommand.Command);
 
     //set urban api url;
     var options = {
