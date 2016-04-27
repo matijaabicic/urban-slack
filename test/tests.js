@@ -5,7 +5,7 @@ var parser          = require("../lib/urban-parser.js");
 var commandParser  = require("../lib/slack-command-parser.js");
 var fs              = require("fs");
 
-var obj = JSON.parse(fs.readFileSync('mocha_testing/sampledata.js', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('test/sampledata.js', 'utf8'));
 
 describe("Internal testing", function() {
 
@@ -85,6 +85,12 @@ describe("Internal testing", function() {
     it("Parses --last switch", function(){
       var commandRequest = JSON.stringify(obj.commandparser.lastRequest);
       var expected_output = JSON.stringify(obj.commandparser.lastRequest_result);
+
+      assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --more switch", function(){
+      var commandRequest = JSON.stringify(obj.commandparser.moreRequest);
+      var expected_output = JSON.stringify(obj.commandparser.moreRequest_result);
 
       assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
     });
