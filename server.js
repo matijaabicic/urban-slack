@@ -12,8 +12,10 @@ var secrets = require('./secrets');
 var mLabHelper = require('./lib/mLabHelper');
 
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
-
 var mlab = require('mongolab-data-api')(mLabKey);
+
+//object to store short-term user's phrase history
+var phraseStore = {};
 
 //let the server port be configurable.
 var PORT = settings.serverPort;
@@ -152,6 +154,7 @@ app.post('/api', function(req, res){
         "filter"        : parsedCommand.rating,
         "random"        : parsedCommand.random,
         "last"          : parsedCommand.last,
+        "more"          : parsedCommand.more,
         "datetime"      : currentDate,
         "team_id"       : req_team_id,
         "cahnnel_id"    : req_channel_id,
@@ -192,6 +195,10 @@ app.post('/api', function(req, res){
     //hit up urban dictionary API
     request(options, function callback (error, response, body){
       if (!error && response.statusCode==200){
+
+        // added in v0.5 - store user's response in the phrase store
+        var userKey = req_team_id + '_' + req_user_id;
+        phraseStore[userKey] = body;
 
         //send the cleaned-up command and response type to parser
         //res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
