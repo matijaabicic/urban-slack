@@ -57,55 +57,28 @@
 	</div><!-- /headerwrap -->
 
 	<!-- *****************************************************************************************************************
-	 SERVICE LOGOS
+	 Release History
 	 ***************************************************************************************************************** -->
-   <div id="service">
-	 	<div class="container">
- 			<div class="row centered">
-        <div class="col-md-8 col-md-offset-2">
-          <dl class="dl-horizontal left">
-            <dt>Ask for Help</dt>
-            <dd><code>/urban ?</code></dd>
-            <dd>Urban will give you a quick glance at all available commands</dd>
-            <br/>
-            <dt>Make it public</dt>
-            <dd><code>/urban --public ?</code></dd>
-            <dd>Urban will post both your "?" request and the response publically into your current channel. </dd>
-            <br/>
-            <dt>Phrases</dt>
-            <dd><code>/urban FOMO</code>  or  <code>/urban what's up</code> ...</dd>
-            <dd>You will see an Urban Dictionary definition for your search term.</dd>
-            <br/>
-            <dt>Sketchy Phrases</dt>
-            <dd><code>/urban --sfw kevin</code></dd>
-            <dd>This will tell you that kevin has a huge ****. You can always try <code>/urban kevin</code> without the <strong>--sfw</strong> part, but that's at your own discretion..and peril.</dd>
-            <br/>
-            <dt>Randomize</dt>
-            <dd><code>/urban --random FOMO</code></dd>
-            <dd>Urban Dictionary contains mutliple, crowd-sourced definitions for many expressions. By default, Urban Bot will show you the first, most-upvoted definition. This switch will give you a random phrase every time you request it. Same goes for the sound phrases, they will be randomized as well.</dd>
-            <br/>
-            <dt>Get last phrase</dt>
-            <dd><code>/urban --last</code></dd>
-            <dd>Recalls the last phrase for the current user. Ideal when doing <code>/urban really really long phrase</code>. Instead of re-typing, just to get it into a public channel, just use <code>/urban --last --public</code>.</dd>
-            <br/>
-            <dt>Combinations</dt>
-            <dd><code>/urban --sfw --public kevin</code> or <code>/urban --public --sfw kevin</code> or <code>/urban --random kevin --sfw --public</code> or <code>/urban --sfw kevin --public</code> or...well, you get the point.</dd>
-            <dd>All these above examples will take the naughty code returned by Urban Dictionary, censosor it and then output it into a public channel, private conversation or a group.</dd>
-            <br/>
-            <dt>Defaults</dt>
-            <dd><code>/urban --nsfw --private kevin</code></dd>
-            <dd>This is the default response type; meaning - only you can see the response and that response will be non-filtered. <code>/urban kevin</code> is the equivalent to above.</dd>
-            <br/>
-            <dt>Look with our eyes</dt>
-            <dd>Below, you can see the features in action (GIF).<dd>
-          </dl>
-        </div>
-      </div> <!-- /row -->
-	 	</div><! --/container -->
-	 </div><! --/service -->
-
-   <br/>
-   <% include ./partial/featureGallery %>
+   <div class="row centered">
+     <div class="col-md-8 col-md-offset-2">
+       <div class="table-responsive">
+         <% if (releases.length > 0) { %>
+         <table class="table">
+           <% releases.forEach(function(release) { %>
+             <tr>
+               <td><a href="<%=release.html_url %>" target="_blank"> Release <%= release.tag_name %></a></td>
+               <td><p><%=release.name %></p></td>
+               <td><p><%=release.created_at %></p></td>
+             </tr>
+           <% }); %>
+         </table>
+         <% } else { %>
+           <h1>PROBLEM OCCURED WHILE GETTING DATA FROM GITHUB</h1>
+           <p>Head over to <a href="https://github.com/matijaabicic/urban-slack/releases" target="_blank">Urban Github Repo</a> and see the list while we deal with the problem</p>
+         <% } %>
+       </div> <!-- /table-responsive -->
+     </div>
+   </div> <!-- /row -->
 
 	<!-- *****************************************************************************************************************
 	 FOOTER -->

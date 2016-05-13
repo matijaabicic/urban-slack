@@ -14,9 +14,6 @@ var mLabHelper = require('./lib/mLabHelper');
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
 var mlab = require('mongolab-data-api')(mLabKey);
 
-//object to store short-term user's phrase history
-var phraseStore = {};
-
 //let the server port be configurable.
 var PORT = settings.serverPort;
 
@@ -69,6 +66,30 @@ app.get('/contributors', function(req,res){
       console.log(error);
       //glitch with github. No data to pass, catch this scenario in contributors.ejs
       res.render('contributors', {contributors: []});
+    }
+  });
+
+});
+
+// history route added in v0.5.1
+app.get('/history', function(req,res){
+  //request data from github.
+  var gh_request_options = {
+    uri:   'https://api.github.com/repos/matijaabicic/urban-slack/releases',
+    method: 'GET',
+    headers: {'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'}
+  };
+
+  request(gh_request_options, function callback(error, response, body){
+    if (!error && response.statusCode==200){
+      //pass data to history page
+      res.render('history', {releases : JSON.parse(body)});
+    }
+    else {
+      console.log("Failed request to github.");
+      console.log(error);
+      //glitch with github. no data to pass, catch this scenario in history.ejs
+      res.render('history',{releases : []});
     }
   });
 
@@ -195,10 +216,6 @@ app.post('/api', function(req, res){
     //hit up urban dictionary API
     request(options, function callback (error, response, body){
       if (!error && response.statusCode==200){
-
-        // added in v0.5 - store user's response in the phrase store
-        var userKey = req_team_id + '_' + req_user_id;
-        phraseStore[userKey] = body;
 
         //send the cleaned-up command and response type to parser
         //res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
