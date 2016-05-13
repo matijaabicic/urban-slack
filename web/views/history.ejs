@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Urban</title>
+
+    <!-- Add FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!--<link href="assets/css/font-awesome.min.css" rel="stylesheet">-->
+
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="assets/js/modernizr.js"></script>
+  </head>
+
+  <body>
+
+    <!-- *****************************************************************************************************************
+  	 HEADER navbar -->
+
+     <% include ./partial/header %>
+
+  <!-- ***************************************************************************************************************** -->
+
+	<!-- *****************************************************************************************************************
+	 HEADERWRAP
+	 ***************************************************************************************************************** -->
+	<div id="headerwrap">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+          <h1>Version History</h1>
+          <h5>A quick guide on how to use Urban Slack bot.</h5>
+				</div>
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /headerwrap -->
+
+	<!-- *****************************************************************************************************************
+	 SERVICE LOGOS
+	 ***************************************************************************************************************** -->
+   <div id="service">
+	 	<div class="container">
+ 			<div class="row centered">
+        <div class="col-md-8 col-md-offset-2">
+          <dl class="dl-horizontal left">
+            <dt>Ask for Help</dt>
+            <dd><code>/urban ?</code></dd>
+            <dd>Urban will give you a quick glance at all available commands</dd>
+            <br/>
+            <dt>Make it public</dt>
+            <dd><code>/urban --public ?</code></dd>
+            <dd>Urban will post both your "?" request and the response publically into your current channel. </dd>
+            <br/>
+            <dt>Phrases</dt>
+            <dd><code>/urban FOMO</code>  or  <code>/urban what's up</code> ...</dd>
+            <dd>You will see an Urban Dictionary definition for your search term.</dd>
+            <br/>
+            <dt>Sketchy Phrases</dt>
+            <dd><code>/urban --sfw kevin</code></dd>
+            <dd>This will tell you that kevin has a huge ****. You can always try <code>/urban kevin</code> without the <strong>--sfw</strong> part, but that's at your own discretion..and peril.</dd>
+            <br/>
+            <dt>Randomize</dt>
+            <dd><code>/urban --random FOMO</code></dd>
+            <dd>Urban Dictionary contains mutliple, crowd-sourced definitions for many expressions. By default, Urban Bot will show you the first, most-upvoted definition. This switch will give you a random phrase every time you request it. Same goes for the sound phrases, they will be randomized as well.</dd>
+            <br/>
+            <dt>Get last phrase</dt>
+            <dd><code>/urban --last</code></dd>
+            <dd>Recalls the last phrase for the current user. Ideal when doing <code>/urban really really long phrase</code>. Instead of re-typing, just to get it into a public channel, just use <code>/urban --last --public</code>.</dd>
+            <br/>
+            <dt>Combinations</dt>
+            <dd><code>/urban --sfw --public kevin</code> or <code>/urban --public --sfw kevin</code> or <code>/urban --random kevin --sfw --public</code> or <code>/urban --sfw kevin --public</code> or...well, you get the point.</dd>
+            <dd>All these above examples will take the naughty code returned by Urban Dictionary, censosor it and then output it into a public channel, private conversation or a group.</dd>
+            <br/>
+            <dt>Defaults</dt>
+            <dd><code>/urban --nsfw --private kevin</code></dd>
+            <dd>This is the default response type; meaning - only you can see the response and that response will be non-filtered. <code>/urban kevin</code> is the equivalent to above.</dd>
+            <br/>
+            <dt>Look with our eyes</dt>
+            <dd>Below, you can see the features in action (GIF).<dd>
+          </dl>
+        </div>
+      </div> <!-- /row -->
+	 	</div><! --/container -->
+	 </div><! --/service -->
+
+   <br/>
+   <% include ./partial/featureGallery %>
+
+	<!-- *****************************************************************************************************************
+	 FOOTER -->
+
+   <% include ./partial/footer %>
+
+<!-- ***************************************************************************************************************** -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/retina-1.1.0.js"></script>
+	<script src="assets/js/jquery.hoverdir.js"></script>
+	<script src="assets/js/jquery.hoverex.min.js"></script>
+	<script src="assets/js/jquery.prettyPhoto.js"></script>
+  	<script src="assets/js/jquery.isotope.min.js"></script>
+  	<script src="assets/js/custom.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74299720-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
