@@ -49,6 +49,12 @@ describe("Internal testing", function() {
       //compare and assert test
       assert.equal(parse_result, expected_output);
     });
+    it("Parses special character &", function(){
+      var commandRequest =JSON.stringify(obj.commandparser.ampRequest);
+      var expected_output = JSON.stringify(obj.commandparser.ampRequest_result);
+
+      assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
   });
 
   describe("Command parser testing (slack-command-parser.js)", function() {
@@ -85,12 +91,6 @@ describe("Internal testing", function() {
     it("Parses --last switch", function(){
       var commandRequest = JSON.stringify(obj.commandparser.lastRequest);
       var expected_output = JSON.stringify(obj.commandparser.lastRequest_result);
-
-      assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
-    });
-    it("Parses --more switch", function(){
-      var commandRequest = JSON.stringify(obj.commandparser.moreRequest);
-      var expected_output = JSON.stringify(obj.commandparser.moreRequest_result);
 
       assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
     });

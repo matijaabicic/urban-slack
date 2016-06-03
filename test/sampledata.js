@@ -59,7 +59,7 @@
     "comboRequest_result"       : {"responseType":"in_channel","rating":"sfw","random":true,"Command":"\"/urban hello   \""},
     "lastRequest"               : "/urban --last",
     "lastRequest_result"        : {"responseType":"ephemeral","rating":"nsfw","random":false,"last":true,"Command":""},
-    "moreRequest"               : "/urban --more",
-    "moreRequest_result"        : {"responseType":"ephemeral","rating":"nsfw","random":false,"more":true,"Command":""}
+    "ampRequest"                : "/urban f&f",
+    "ampRequest_result"         : {"responseType":"ephemeral","rating":"nsfw","random":false,"Command":"\"/urban f%26f\""}
   }
 }
