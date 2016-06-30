@@ -202,6 +202,15 @@ app.post('/api', function(req, res){
       }
     });
   }
+  // #26 - implemented in v1.0.0 - setting user defaults
+  // do not query urban dictionary in this case, just set the defaults for the user
+  else if (parsedCommand.defaults){
+    // 1. construct team-user keyboard
+    // 2. store team-user default values in memory
+    // 3. write team-user default values to database
+    // 4. return confirmation message
+  }
+
   //otherwise, we have a real request.
   else{
     //if requesting last, we need to fetch it from the DB first
@@ -258,6 +267,9 @@ var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
 
   lastPhrase = mLabHelper.GetLastQuery();
+
+  // #26 - v1.0.0 - reload the team member defaults.
+
   //used on server startup - query the storage and pull out last queried phrase
   while(lastPhrase === null || lastPhrase=== undefined ){
     lastPhrase = mLabHelper.GetLastQuery();

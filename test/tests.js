@@ -94,5 +94,47 @@ describe("Internal testing", function() {
 
       assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
     });
+    it("Parses --set switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --public switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsPublicRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsPublicRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --private switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsPrivateRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsPrivateRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --sfw switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsSfwRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsSfwRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --nsfw switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsNsfwRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsNsfwRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --random switch", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaultsRandomRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaultsRandomRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
+    it("Parses --set switch with --random --public --nsfw switches", function(){
+        var commandRequest = JSON.stringify(obj.commandparser.defaults3SwitchesRequest);
+        var expected_output = JSON.stringify(obj.commandparser.defaults3SwitchesRequest_result);
+
+        assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
   });
 });
