@@ -28,7 +28,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.set('views', __dirname+'/web/views');
+
+//initiate global variables
 var lastPhrase = null;
+var userDefaults = {};
 
 //standard web homepage route
 app.get('/', function(req, res){
@@ -206,7 +209,11 @@ app.post('/api', function(req, res){
   // do not query urban dictionary in this case, just set the defaults for the user
   else if (parsedCommand.defaults){
     // 1. construct team-user keyboard
+    var userKey = req_team_id + "~" + req_user_id;
+
     // 2. store team-user default values in memory
+    userDefaults["userKey"] = {"rating":parsedCommand.rating, "random":parsedCommand.random,"responseType":parsedCommand.responseType};
+
     // 3. write team-user default values to database
     // 4. return confirmation message
   }
