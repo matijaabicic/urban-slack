@@ -165,8 +165,13 @@ app.post('/api', function(req, res){
   var req_user_id       = req.body.user_id;
   var req_user_name     = req.body.user_name;
 
+
+  // define userKey that we will need for dealing with default user settings
+  var userKey = req_team_id + "~" + req_user_id;
+
   //parse command and look for switches
-  var parsedCommand = commandParser.parse(req_text);
+  // added userDefaults in v1.0.0 to address #26 - User Default settings
+  var parsedCommand = commandParser.parse(req_text, userDefaults.get(userKey));
 
 
   //record current datetime
@@ -190,7 +195,6 @@ app.post('/api', function(req, res){
         }
   };
 
-
   //if command is "?", just return the help page. no need to call urban API
   //sanitize whitespaces and see if all we have left is ?
   //should be able to post this publically and privately
@@ -213,7 +217,6 @@ app.post('/api', function(req, res){
   // do not query urban dictionary in this case, just set the defaults for the user
   else if (parsedCommand.defaults){
     // 1. construct team-user keyboard
-    var userKey = req_team_id + "~" + req_user_id;
     var userValue = {"rating":parsedCommand.rating, "random":parsedCommand.random,"responseType":parsedCommand.responseType};
 
     // 2. store team-user default values in memory
