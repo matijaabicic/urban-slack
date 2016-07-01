@@ -2,14 +2,18 @@
 var http = require('http');
 var express = require('express');
 var request = require('request');
-var settings = require('./settings');
+var HashMapStructure = require('hashmap');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
+
+var settings = require('./settings');
+var secrets = require('./secrets');
+
 var urbanParser = require('./lib/urban-parser');
 var commandParser = require('./lib/slack-command-parser');
 var helper = require('./lib/helpPage');
-var secrets = require('./secrets');
 var mLabHelper = require('./lib/mLabHelper');
+var settingsConfirmation = require('./lib/userSettingsConfirmation');
 
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
 var mlab = require('mongolab-data-api')(mLabKey);
@@ -31,7 +35,7 @@ app.set('views', __dirname+'/web/views');
 
 //initiate global variables
 var lastPhrase = null;
-var userDefaults = {};
+var hashmap = new HashMapStructure();
 
 //standard web homepage route
 app.get('/', function(req, res){
@@ -210,12 +214,36 @@ app.post('/api', function(req, res){
   else if (parsedCommand.defaults){
     // 1. construct team-user keyboard
     var userKey = req_team_id + "~" + req_user_id;
+    var userValue = {"rating":parsedCommand.rating, "random":parsedCommand.random,"responseType":parsedCommand.responseType};
 
     // 2. store team-user default values in memory
-    userDefaults["userKey"] = {"rating":parsedCommand.rating, "random":parsedCommand.random,"responseType":parsedCommand.responseType};
+    hashmap.set(userKey,  userValue);
 
     // 3. write team-user default values to database
-    // 4. return confirmation message
+    //record requests in mLab
+    var mlab_setUserSettings = {
+      "database"        : settings.mongoDBName,
+      "collectionName"  : "userSettings",
+      "documents"       : {
+          "userKey" :userKey,
+          "userValue" : userValue
+          }
+    };
+
+    //now insert help data to mLab
+    mlab.insertDocuments(mlab_setUserSettings, function(err, data){
+      if(err){
+        console.log(err);
+      }
+      else {
+        //debug only
+        //console.log("Mongo insert ok.");
+      }
+    });
+
+    // 4. return confirmation message to the user
+    res.send(settingsConfirmation.confirm(userValue));
+
   }
 
   //otherwise, we have a real request.
