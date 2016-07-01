@@ -2,7 +2,7 @@
 var http = require('http');
 var express = require('express');
 var request = require('request');
-var HashMapStructure = require('hashmap');
+var Hashmap = require('hashmap');
 var ua = require('universal-analytics');
 var bodyParser = require('body-parser');
 
@@ -35,7 +35,7 @@ app.set('views', __dirname+'/web/views');
 
 //initiate global variables
 var lastPhrase = null;
-var hashmap = new HashMapStructure();
+var userDefaults = new Hashmap();
 
 //standard web homepage route
 app.get('/', function(req, res){
@@ -217,7 +217,7 @@ app.post('/api', function(req, res){
     var userValue = {"rating":parsedCommand.rating, "random":parsedCommand.random,"responseType":parsedCommand.responseType};
 
     // 2. store team-user default values in memory
-    hashmap.set(userKey,  userValue);
+    userDefaults.set(userKey,  userValue);
 
     // 3. write team-user default values to database
     //record requests in mLab
