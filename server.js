@@ -223,26 +223,7 @@ app.post('/api', function(req, res){
     userDefaults.set(userKey,  userValue);
 
     // 3. write team-user default values to database
-    //record requests in mLab
-    var mlab_setUserSettings = {
-      "database"        : settings.mongoDBName,
-      "collectionName"  : "userSettings",
-      "documents"       : {
-          "userKey" :userKey,
-          "userValue" : userValue
-          }
-    };
-
-    //now insert help data to mLab
-    mlab.insertDocuments(mlab_setUserSettings, function(err, data){
-      if(err){
-        console.log(err);
-      }
-      else {
-        //debug only
-        //console.log("Mongo insert ok.");
-      }
-    });
+    mLabHelper.UpdateUserSettings(userKey, userValue);
 
     // 4. return confirmation message to the user
     res.send(settingsConfirmation.confirm(userValue));
