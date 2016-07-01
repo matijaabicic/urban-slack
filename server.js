@@ -288,6 +288,14 @@ var server = app.listen(process.env.PORT || PORT, function(){
   lastPhrase = mLabHelper.GetLastQuery();
 
   // #26 - v1.0.0 - reload the team member defaults.
+  // first load all user settings from db
+  var persistentUserSettings = mLabHelper.GetAllUserSettings();
+  //then add them all to the hashmap
+  for (var i = 0, len = persistentUserSettings.length; i<len; i++){
+    userDefaults.set(persistentUserSettings[i].userKey, persistentUserSettings[i].userValue);
+  }
+  //end of #26
+
 
   //used on server startup - query the storage and pull out last queried phrase
   while(lastPhrase === null || lastPhrase=== undefined ){
