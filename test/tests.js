@@ -82,6 +82,12 @@ describe("Internal testing", function() {
 
       assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
     });
+    it("Parses norandom requests", function(){
+      var commandRequest = JSON.stringify(obj.commandparser.norandomRequest);
+      var expected_output = JSON.stringify(obj.commandparser.norandomRequest_result);
+
+      assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
     it("Parses combined requests", function(){
       var commandRequest = JSON.stringify(obj.commandparser.comboRequest);
       var expected_output = JSON.stringify(obj.commandparser.comboRequest_result);
