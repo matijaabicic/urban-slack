@@ -76,6 +76,8 @@
     "defaultsRandomRequest"           : "/urban --set --random",
     "defaultsRandomRequest_result"    : {"responseType":"ephemeral","rating":"nsfw","random":true,"defaults":true,"Command":"\"/urban  \""},
     "defaults3SwitchesRequest"        : "/urban --set --random --public --nsfw",
-    "defaults3SwitchesRequest_result" : {"responseType":"in_channel","rating":"nsfw","random":true,"defaults":true,"Command":"\"/urban    \""}
+    "defaults3SwitchesRequest_result" : {"responseType":"in_channel","rating":"nsfw","random":true,"defaults":true,"Command":"\"/urban    \""},
+    "defaultsChecker"                 : "/urban --mysettings",
+    "defaultsChecker_result"          : {"responseType":"ephemeral","rating":"nsfw","random":false,"mysettings":true,"Command":"\"/urban \""}
   }
 }

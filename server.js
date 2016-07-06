@@ -227,7 +227,16 @@ app.post('/api', function(req, res){
 
     // 4. return confirmation message to the user
     res.send(settingsConfirmation.confirm(userValue));
-
+  }
+  // #41 implemented in 1.0.2 - return user settings with --mysettings switch
+  else if (parsedCommand.mysettings){
+    // 1. pick the current user values
+    var userSettingValue = userDefaults.get(userKey);
+    // 2. add --mysetgings flag
+    if (userSettingValue) userSettingValue.getSettings = true;
+    // 2. run it throuhg the helper function
+    // 3. return to user
+    res.send(settingsConfirmation.confirm(userSettingValue));
   }
 
   //otherwise, we have a real request.
