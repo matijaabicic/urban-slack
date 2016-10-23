@@ -14,6 +14,7 @@ var commandParser = require('./lib/slack-command-parser');
 var helper = require('./lib/helpPage');
 var mLabHelper = require('./lib/mLabHelper');
 var settingsConfirmation = require('./lib/userSettingsConfirmation');
+var feedbackConfirmation = require('./lib/feedbackConfirmation');
 
 var mLabKey = (process.env.mLabApiKey ? process.env.mLabApiKey : secrets.mLabApiKey);
 var mlab = require('mongolab-data-api')(mLabKey);
@@ -242,7 +243,17 @@ app.post('/api', function(req, res){
   else if (parsedCommand.feedback)
   {
       // 1. record the feedback to data store
+        //1a. record query type for general tracking
+      mlabOptions.documents.result_type = "feedback";
+      mlab.insertDocuments(mlabOptions, function(err, data){
+        if(err){console.log(err);
+        }
+      });
+        //1b. record specific feedback into separate collection
+      mLabHelper.insertUserFeedback(parsedCommand.Command);
+      console.log(parsedCommand);
       // 2. return a thank you response to the user.
+      res.send(feedbackConfirmation.confirm());
   }
 
   //otherwise, we have a real request.

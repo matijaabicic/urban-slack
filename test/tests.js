@@ -148,5 +148,11 @@ describe("Internal testing", function() {
 
         assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
     });
+    it("Parses --feedback switch", function(){
+      var commandRequest = JSON.stringify(obj.commandparser.userFeedback);
+      var expected_output = JSON.stringify(obj.commandparser.userFeedback_result);
+
+      assert.equal(JSON.stringify(commandParser.parse(commandRequest)), expected_output);
+    });
   });
 });

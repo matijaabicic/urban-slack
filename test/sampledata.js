@@ -44,6 +44,11 @@
         "title": "Example use",
         "text": "asdasdasdasdsdasdasdadasdsd"
       }]
+    },
+    "feedbackOutput":{
+      "response_type": "in_channel",
+      "username": "UrbanSlack",
+      "text": "Your feedback is much appreciated!! Thank you for asking to make Urban Slack better. Feel free to get in touch with @matijaabicic on Twitter and don't forget to check out https://urban-slack.herokuapp.com for details on how to get involved."
     }
   },
   "commandparser": {
@@ -78,6 +83,8 @@
     "defaults3SwitchesRequest"        : "/urban --set --random --public --nsfw",
     "defaults3SwitchesRequest_result" : {"responseType":"in_channel","rating":"nsfw","random":true,"defaults":true,"Command":"\"/urban    \""},
     "defaultsChecker"                 : "/urban --mysettings",
-    "defaultsChecker_result"          : {"responseType":"ephemeral","rating":"nsfw","random":false,"mysettings":true,"Command":"\"/urban \""}
+    "defaultsChecker_result"          : {"responseType":"ephemeral","rating":"nsfw","random":false,"mysettings":true,"Command":"\"/urban \""},
+    "userFeedback"                    : "/urban --feedback Here's some feedback!!",
+    "userFeedback_result"             : {"responseType":"ephemeral","rating":"nsfw","random":false,"feedback":true,"Command":"\"/urban  Here's some feedback!!\""}
   }
 }
