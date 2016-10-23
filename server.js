@@ -238,6 +238,12 @@ app.post('/api', function(req, res){
     // 3. return to user
     res.send(settingsConfirmation.confirm(userSettingValue));
   }
+  // #43 - implemented in v1.1.0 - ability to receive in-app feedback with --feedback switch
+  else if (parsedCommand.feedback)
+  {
+      // 1. record the feedback to data store
+      // 2. return a thank you response to the user.
+  }
 
   //otherwise, we have a real request.
   else{
