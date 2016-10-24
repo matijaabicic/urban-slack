@@ -21,6 +21,8 @@ module.exports = {
   defaultRating             : 'nsfw',
 
   //by default, do not randomize responses
-  defaultRandomSetting      : false
+  defaultRandomSetting      : false,
 
+  // #43 - frequency for prompting for feedback.
+  feedbackPromptInterval    : 10
 };

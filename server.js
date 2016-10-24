@@ -37,6 +37,7 @@ app.set('views', __dirname+'/web/views');
 //initiate global variables
 var lastPhrase = null;
 var userDefaults = new Hashmap();
+var numberOfQueries = null;
 
 //standard web homepage route
 app.get('/', function(req, res){
@@ -251,7 +252,6 @@ app.post('/api', function(req, res){
       });
         //1b. record specific feedback into separate collection
       mLabHelper.insertUserFeedback(parsedCommand.Command);
-      console.log(parsedCommand);
       // 2. return a thank you response to the user.
       res.send(feedbackConfirmation.confirm());
   }
@@ -270,7 +270,12 @@ app.post('/api', function(req, res){
     //hit up urban dictionary API
     request(options, function callback (error, response, body){
       if (!error && response.statusCode==200){
+        //#43 - increment total number of queries
+        numberOfQueries += 1;
 
+        if (numberOfQueries % settings.feedbackPromptInterval === 0){
+          parsedCommand.prompt = true;
+        }
         //send the cleaned-up command and response type to parser
         //res.send(urbanParser.parse(body, parsedCommand.responseType, parsedCommand.rating));
         // changed in v0.4.1 to pass back the  entire parsedCommand
@@ -312,6 +317,13 @@ var server = app.listen(process.env.PORT || PORT, function(){
   console.log("Server started at localhost:%s", PORT);
 
   lastPhrase = mLabHelper.GetLastQuery();
+  //numberOfQueries = mLabHelper.getTotalNumberOfUserQueries(); // for some reason this returns as undefined. investigate later.
+  mlab.listDocuments({"database":settings.mongoDBName, "collectionName":"phrases","resultCount":true}, function(err, data){
+    if(!err){
+      numberOfQueries = data;
+    }
+    else numberOfQueries = -1;
+  });
 
   // #26 - v1.0.0 - reload the team member defaults.
   // first load all user settings from db
