@@ -50,7 +50,6 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
           <h1>Version History</h1>
-          <h5>A quick guide on how to use Urban Slack bot.</h5>
 				</div>
 			</div><!-- /row -->
 	    </div> <!-- /container -->
@@ -66,9 +65,9 @@
          <table class="table">
            <% releases.forEach(function(release) { %>
              <tr>
-               <td><a href="<%=release.html_url %>" target="_blank"> Release <%= release.tag_name %></a></td>
-               <td><p><%=release.name %></p></td>
-               <td><p><%=release.created_at %></p></td>
+               <td style="vertical-align:middle"><a href="<%=release.html_url %>" target="_blank"> Release <%= release.tag_name %></a></td>
+               <td><p><strong><%=release.name %></strong></p><br><%=release.body %></td>
+               <td style="vertical-align:middle"><p><%=release.created_at %></p></td>
              </tr>
            <% }); %>
          </table>
