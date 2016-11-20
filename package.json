@@ -39,6 +39,7 @@
     "ejs": "~2.4.1",
     "mongolab-data-api": "~1.1.4",
     "swearjar": "~0.1.2",
-    "hashmap": "~2.0.6"
+    "hashmap": "~2.0.6",
+    "moment": "~2.16.0"
   }
 }
