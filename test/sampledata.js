@@ -85,6 +85,8 @@
     "defaultsChecker"                 : "/urban --mysettings",
     "defaultsChecker_result"          : {"responseType":"ephemeral","rating":"nsfw","random":false,"mysettings":true,"Command":"\"/urban \""},
     "userFeedback"                    : "/urban --feedback Here's some feedback!!",
-    "userFeedback_result"             : {"responseType":"ephemeral","rating":"nsfw","random":false,"feedback":true,"Command":"\"/urban  Here's some feedback!!\""}
+    "userFeedback_result"             : {"responseType":"ephemeral","feedback":true,"rating":"nsfw","random":false,"Command":"\"/urban  Here's some feedback!!\""},
+    "surprise"                        : "/urban --surprise",
+    "surprise_result"                 : {"responseType":"ephemeral","rating":"nsfw","random":false,"Command":"\"/urban  --surprise\""}
   }
 }

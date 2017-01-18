@@ -5,6 +5,7 @@ module.exports = {
   serverPort                : 5000,
   GA                        : 'UA-74299720-1', // Google analytics tracking ID
   urbanAPI                  : 'http://api.urbandictionary.com/v0/define?term=',
+  randomUrbanAPI            : 'http://api.urbandictionary.com/v0/random',
   gaIgnoreHosts             : ['localhost:8080', 'localhost:5000', 'urban-slack.com'], //list of hosts to be ignored on API paths
 
   //slack response modes:
