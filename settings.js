@@ -24,5 +24,5 @@ module.exports = {
   defaultRandomSetting      : false,
 
   // #43 - frequency for prompting for feedback.
-  feedbackPromptInterval    : 10
+  feedbackPromptInterval    : 50
 };
