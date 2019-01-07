@@ -30,15 +30,15 @@
   },
   "homepage": "https://github.com/matijaabicic/urban-slack",
   "dependencies": {
+    "body-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "fs": "latest",
+    "hashmap": "latest",
     "http": "0.0.0",
-    "express": "~4.13.4",
-    "request": "~2.69.0",
-    "universal-analytics": "~0.3.10",
-    "body-parser": "~1.15.0",
-    "fs": "~0.0.2",
-    "ejs": "~2.4.1",
-    "mongolab-data-api": "~1.1.4",
-    "swearjar": "~0.1.2",
-    "hashmap": "~2.0.6"
+    "mongolab-data-api": "latest",
+    "request": "latest",
+    "swearjar": "latest",
+    "universal-analytics": "latest"
   }
 }
