@@ -124,11 +124,14 @@ app.get('/AddSlack', function(req, res){
     var slack_client_ID = (process.env.secret_slack_client_ID ? process.env.secret_slack_client_ID : secrets.secret_slack_client_ID);
     var slack_client_secret = (process.env.secret_slack_client_secret ? process.env.secret_slack_client_secret : secrets.secret_slack_client_secret);
 
-    var slack_authorization = settings.slackOAuthURI +
-      '?client_id=' + slack_client_ID +
+    // #51 - Update Scopes
+    var slack_authorization = settings.slackOAuthURI + process.env.secret_slack_client_ID + '&scope=commands'
+      '?client_id=' + slack_client_ID
+      /* #51 - changed authorization process
       '&client_secret=' + slack_client_secret +
       '&code=' + code +
       '&redirect_uri=' + settings.slackRedirectURI_heroku;
+      end of #51 */
 
     //set urban api url;
     var options = {
