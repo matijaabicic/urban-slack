@@ -13,7 +13,8 @@ module.exports = {
   // in_channel - visible to everyone in the chat window (direct, group, channel)
   defaultSlackResponseMode  : 'ephemeral',
 
-  slackOAuthURI             : 'https://slack.com/api/oauth.access',
+  //slackOAuthURI             : 'https://slack.com/api/oauth.access',
+  slackOAuthURI             : 'https://slack.com/oauth/v2/authorize?client_id=' + process.env.secret_slack_client_ID + '&scope=commands',
   slackRedirectURI_local    : 'http://localhost:5000/AddSlack',
   slackRedirectURI_heroku   : 'https://urban-slack.herokuapp.com/AddSlack',
   mongoDBName               : 'urbanslack',
