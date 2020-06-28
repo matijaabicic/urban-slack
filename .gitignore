@@ -32,11 +32,12 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Secret files
+# Secret files and other stuff
 secrets.js
 app.json
 .env
 .node-xmlhttprequest*
+package-lock.json
 
 # OS X stuff
 *DS_Store

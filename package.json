@@ -1,6 +1,6 @@
 {
   "name": "urban-slack",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Urban Dictionary Slack bot",
   "main": "server.js",
   "directories": {
@@ -32,12 +32,14 @@
   "dependencies": {
     "body-parser": "latest",
     "ejs": "latest",
-    "express": "latest",
+    "express": "^4.17.1",
     "fs": "latest",
     "hashmap": "latest",
     "http": "0.0.0",
     "mongolab-data-api": "latest",
+    "node-supervisor": "^1.0.2",
     "request": "latest",
+    "supervisor": "^0.12.0",
     "swearjar": "latest",
     "universal-analytics": "latest"
   }

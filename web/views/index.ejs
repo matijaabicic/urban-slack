@@ -24,33 +24,18 @@
     <!-- Mailchimp embedded control -->
     <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
 
-
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <script src="assets/js/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
 </head>
 
 <body>
 
-    <!-- *****************************************************************************************************************
-  	 HEADER navbar -->
+    <!-- *****HEADER navbar -->
+    <%- include ("./partial/header") -%>
+    <!-- ******************** -->
 
-    <% include ./partial/header %>
-
-        <!-- ***************************************************************************************************************** -->
-
-        <!-- *****************************************************************************************************************
-	 HEADERWRAP
-	 ***************************************************************************************************************** -->
+        <!-- ***** HEADERWRAP ***** -->
         <div id="headerwrap">
             <div class="container">
                 <div class="row">
@@ -58,8 +43,7 @@
                         <h1>URBAN</h1>
                         <h5>Urban Dictionary Slack Bot</h5>
                         <br/>
-                        <a href="https://slack.com/oauth/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-                            /></a>
+                        <a href="https://slack.com/oauth/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"/></a>
                         <br/>
                         <br/>
                         <!-- Begin MailChimp Signup Form -->
@@ -94,9 +78,7 @@
         <br/>
         <br/>
 
-        <!-- *****************************************************************************************************************
-	 SERVICE LOGOS
-	 ***************************************************************************************************************** -->
+        <!-- ************* SERVICE LOGOS ****************** -->
         <div id="service">
             <div class="container">
                 <div class="row centered">
@@ -121,8 +103,7 @@
                         <p>Urban is super-easy to add to your slack team. Hit the add-to-slack button, authorize your team to use Urban and you can start using /urban command within seconds inside your Slack team.</p>
                         <p>
                             <br/>
-                            <a href="https://slack.com/oauth/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-                                /></a>
+                            <a href="https://slack.com/oauth/v2/authorize?scope=commands&client_id=13455138151.25936209731"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
                         </p>
                     </div>
                     <div class="col-md-4">
@@ -155,24 +136,15 @@
           </div>
         </div>
 
-        <!-- *****************************************************************************************************************
-   FEATURE GALLERY
-   ***************************************************************************************************************** -->
-        <% include ./partial/featureGallery %>
+        <!-- ***********************************FEATURE GALLERY************************************************ -->
 
-            <!-- ***************************************************************************************************************** -->
+        <%- include ("./partial/featureGallery") -%>
 
-            <!-- *****************************************************************************************************************
-	 FOOTER -->
+        <!-- ***************************************	 FOOTER -->
 
-            <% include ./partial/footer %>
+          <%- include ("./partial/footer") -%>
 
-                <!-- ***************************************************************************************************************** -->
-
-
-                <!-- Bootstrap core JavaScript
-    ================================================== -->
-                <!-- Placed at the end of the document so the pages load faster -->
+                <!-- Bootstrap core JavaScript==== -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
                 <script src="assets/js/bootstrap.min.js"></script>
                 <script src="assets/js/retina-1.1.0.js"></script>
@@ -183,14 +155,13 @@
                 <script src="assets/js/custom.js"></script>
 
                 <script>
-            // Portfolio
-            (function($) {
+          (function($) {
             	"use strict";
             	var $container = $('.portfolio'),
             		$items = $container.find('.portfolio-item'),
             		portfolioLayout = 'fitRows';
 
-            		if( $container.hasClass('portfolio-centered') ) {
+            		if( $container.hasClass('portfolio-centered')) {
             			portfolioLayout = 'masonry';
             		}
 
